@@ -10,9 +10,13 @@ namespace Demo.Sagas.Subscriber
         InitiatedBy<IVisitAddedOrChangedMessage>,
         Orchestrates<IRepricingResponseMessage>
     {
+        public EstimationSaga()
+        {}
+
         public EstimationSaga(Guid correlationId)
         {
             CorrelationId = correlationId;
+            CreatedDate = DateTimeOffset.Now;
         }
 
         public void Consume(IVisitAddedOrChangedMessage message)
@@ -29,6 +33,16 @@ namespace Demo.Sagas.Subscriber
         public void Consume(IRepricingResponseMessage message)
         {
             Console.WriteLine("RepricingResponseMessage received.  VisitId:  {0}, ChargeAmount:  {1:c}", message.VisitId, message.ChargeAmount);
+        }
+
+        public DateTimeOffset CreatedDate { get; private set; }
+    }
+
+    public class EstimationSagaMap : MassTransit.NHibernateIntegration.SagaClassMapping<EstimationSaga>
+    {
+        public EstimationSagaMap()
+        {
+            RegisterPropertyMapping(x => x.CreatedDate, x => x.NotNullable(true));
         }
     }
 }
