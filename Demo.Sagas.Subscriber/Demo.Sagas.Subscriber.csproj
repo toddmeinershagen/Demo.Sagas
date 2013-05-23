@@ -69,10 +69,12 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="EstimationSaga.cs" />
+    <Compile Include="EstimationSagaMap.cs" />
+    <Compile Include="EstimationStateSaga.cs" />
+    <Compile Include="EstimationStateSagaMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepricingRequestMessage.cs" />
-    <Compile Include="RepricingResponseMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

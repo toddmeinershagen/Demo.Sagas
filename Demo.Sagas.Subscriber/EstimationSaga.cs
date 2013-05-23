@@ -37,12 +37,4 @@ namespace Demo.Sagas.Subscriber
 
         public DateTimeOffset CreatedDate { get; private set; }
     }
-
-    public class EstimationSagaMap : MassTransit.NHibernateIntegration.SagaClassMapping<EstimationSaga>
-    {
-        public EstimationSagaMap()
-        {
-            RegisterPropertyMapping(x => x.CreatedDate, x => x.NotNullable(true));
-        }
-    }
 }
